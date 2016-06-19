@@ -1,0 +1,20 @@
+{
+  "description": "A proxy behind nginx while before kibana to provide data isolation for different users",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gnuhpc/kibana-auth-proxy.git"
+  },
+  "keywords": [
+    "kibana",
+    "auth",
+    "proxy"
+  ],
+  "author": "gnuhpc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gnuhpc/kibana-auth-proxy/issues"
+  },
+  "homepage": "https://github.com/gnuhpc/kibana-auth-proxy#readme"
+}

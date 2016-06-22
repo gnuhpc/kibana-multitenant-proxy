@@ -1,54 +1,35 @@
-var stream = require('stream');
-var http = require('http');
-var connect = require('connect');
-var httpProxy= require('http-proxy');
-var elasticsearch = require('elasticsearch');
+/**
+ *
+ * Created by huangpengcheng on 2016/6/22 0022.
+ */
 
-var proxy = httpProxy.createProxyServer({
-    target: {
-        host: '192.168.145.128',
-        port: 5601 
+var hoxy = require('hoxy');
+var port = 8888;
+var proxy = hoxy.createServer({
+    reverse: 'http://192.168.145.128:5601',
+});
+
+proxy.intercept({
+    phase: 'request',
+    method: 'POST',
+    as: 'string',
+}, function (req, resp, cycle) {
+    var requrl = req.url,
+        requser = req.headers['remote_user'],
+        indexname;
+
+    if (requrl.indexOf('_msearch') != -1) {
+        console.log('request made to: ' + requrl);
+        console.log('request header:' + requser);
+        indexname = JSON.parse(req.string.split('\n')[0]).index[0];
+        console.log('indexname name:' + indexname);
+        if (indexname.indexOf(requser) == -1){
+            req.string = req.string.replace(indexname,'null');
+            console.log(indexname+ ' has been changed to null');
+        }
     }
 });
-var esclient = new elasticsearch.Client({
-    host: 'localhost:9200',
-    log: 'trace'
+
+proxy.listen(port, function () {
+    console.log('The proxy is listening on port ' + port + '.');
 });
-
-var app = connect()
-    .use(function (req, res, next) {
-        var bodyBuffer = '';
-        var indexname,username;
-        var requrl = req.url;
-
-        req.on('data', function (data) {
-            bodyBuffer += data;
-        });
-        req.on('end', function () {
-            if (requrl.indexOf('_msearch') != -1) {
-                username = req.headers.remote_user;
-                indexname = JSON.parse(bodyBuffer.split('\n')[0]).index[0];
-                
-                console.log(requrl);
-                console.log(username);
-                console.log(indexname);
-                
-                if (indexname.indexOf(username) == -1){
-                    bodyBuffer = bodyBuffer.replace(indexname,'null');
-                }
-                console.log(bodyBuffer);
-            }
-            req.body = bodyBuffer;
-
-            var bufferStream = new stream.PassThrough();
-            bufferStream.end(new Buffer(bodyBuffer));
-            req.bodyStream = bufferStream;
-            next();
-        });
-    })
-    .use(function (req, res) {
-        proxy.web(req, res, {buffer: req.bodyStream});
-    });
-
-http.createServer(app).listen(8888);
-

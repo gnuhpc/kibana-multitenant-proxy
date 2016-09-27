@@ -1,0 +1,22 @@
+{
+
+"port": "8888",
+"refreshPort": "8889",
+"kibanaServer": "http://127.0.0.1:5601",
+"es_Server":"http://127.0.0.1:9201/",
+"es_UserInfoUrl":"http://127.0.0.1:9201/.cmbc/user_info/",
+
+"chkTimeRange":"false",
+"totalNum":40000,
+
+"dataMask":"true",
+"dataMaskConfig":
+[
+
+{"indexPrefix":"film","maskFields":[{"maskField":"tag","maskReg":"/goo/g","maskValue":"ba"}]},
+{"indexPrefix":"logstash-sfshm","maskFields":[{"maskField":"message","maskReg":"/2016/g","maskValue":"8888"},{"maskField":"@version","maskReg":"/1/g","maskValue":"8"}]},
+{"indexPrefix":".marvel-es-1","maskFields":[{"maskField":"cluster_uuid","maskReg":"/PO13/g","maskValue":"8888"}]}
+
+]
+
+}

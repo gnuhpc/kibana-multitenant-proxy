@@ -1,0 +1,7 @@
+{
+  "port": "8888",
+  "kibanaServer": "http://192.168.179.128:5601",
+  "totalNum": "40",
+  "es_Server": "http://192.168.179.128:9200/",
+  "es_UserInfoUrl": "http://192.168.179.128:9200/twitter/user_info/"
+}

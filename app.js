@@ -50,7 +50,7 @@ function syncGetMaxDay(indexName){
     console.log('start to get the maxDay ES can support');
     cntOfIndex=parseInt(JSON.parse(strResData)['count']);
 
-    console.log('the count of this index is 'cntOfIndex);
+    console.log('the count of this index is ',cntOfIndex);
 
     var strurl = es_Server+indexName+'/_search';
 

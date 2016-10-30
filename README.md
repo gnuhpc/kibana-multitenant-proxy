@@ -5,6 +5,10 @@
 
 A proxy behind nginx while before kibana to provide data isolation for different users
 
+
+##Why Nodejs?
+因为Kibana发行版自带了一个node，为了部署简便并且鉴于Kibana实际访问不会有太大的并发量，因此选择NodeJS，并非对此语言熟悉。
+
 ##安装准备
 * 安装nodejs（安装完Kibana即可）
 * 离线安装包kibana_proxy.tar.gz

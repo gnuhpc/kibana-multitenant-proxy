@@ -1,7 +1,7 @@
 "# kibana-multitenant-proxy"
 
 
-该Proxy实现Kibana4的数据用户访问隔离、字段脱敏等功能。欢迎试用和pr，提出宝贵意见~
+该Proxy实现Kibana4访问Elasticsearch时数据的多组合数据访问隔离（一个用户只能看到限定的index）、字段脱敏等功能。欢迎试用和pr，提出宝贵意见~
 
 A proxy behind nginx while before kibana to provide data isolation for different users
 

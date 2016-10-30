@@ -3,7 +3,7 @@
 
 该Proxy实现Kibana4访问Elasticsearch时数据的多租户数据访问隔离（一个用户只能看到限定的index）、字段脱敏、单Index查询范围限制等功能。欢迎试用和pr，提出宝贵意见和Star~
 
-离线包和脚本还未上传，请稍候~
+离线包还未上传，请稍候，  着急用的可以先在线安装后自己打包放到无法连接互联网的环境中即可~
 
 A proxy behind nginx while before kibana to provide data isolation for different users
 

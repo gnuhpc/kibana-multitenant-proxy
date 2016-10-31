@@ -11,6 +11,13 @@ A proxy behind nginx while before kibana to provide data isolation for different
 ##Why Nodejs?
 因为Kibana发行版自带了一个node，为了部署简便并且鉴于Kibana实际访问不会有太大的并发量，因此选择NodeJS，并非对此语言熟悉。
 
+##架构图
+![](https://raw.githubusercontent.com/gnuhpc/kibana-multitenant-proxy/master/docs/arch.jpg)
+
+* 如图所示，通过将Kibana的配置文件kibana.yml配置为server.host: "localhost" ，可以屏蔽本地地址之外的IP对Kibana的5601端口进行访问，从而保证本地地址之外的IP只能通过9999和对Kibana进行访问，而通过代理的访问将是可控的，并且有相应访问日志可供查询。
+* 代理借助Nginx的Basic Auth实现了用户的认证。
+* 客户端浏览器通过9999端口访问Kibana时，首先需要进行用户认证，Nginx验证通过后，Kibana Proxy对请求中的用户名和访问的Index进行校验，只有符合权限的请求才会被放行，实现了不同用户组的数据隔离。用户名和所能访问的index前缀，例如配置了logstash-cbank权限后，该用户将可以访问所有以logstash-cbank开头的index，如logstash-cbank-2016.08.26等。
+
 ##安装准备
 * 安装nodejs（安装完Kibana即可）
 * 离线安装包kibana_proxy.tar.gz

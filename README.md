@@ -42,7 +42,7 @@ A proxy behind nginx while before kibana to provide data isolation for different
   * `"refreshPort": "8889",` 配置以及用户信息刷新监听端口
   * `"kibanaServer": "http://127.0.0.1:5601",`后端指向kibana地址以及端口
   * `"es_Server":"http://127.0.0.1:9201/",` ElacticSaearch地址以及端口
-  * `"es_UserInfoUrl":"http://127.0.0.1:9201/.cmbc/user_info/",` 存放用户权限的地址
+  * `"es_UserInfoUrl":"http://127.0.0.1:9201/.user/user_info/",` 存放用户权限的地址
   * `"chkTimeRange":"false",` 配置是否开启查询时间跨度检查
   * `"totalNum":40000,` 当开启时间跨度检查时，单次查询最大支持的数据记录数
   * `"dataMask":"true",` 配置是否开启数据脱敏

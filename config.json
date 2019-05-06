@@ -4,7 +4,7 @@
 "refreshPort": "8889",
 "kibanaServer": "http://127.0.0.1:5601",
 "es_Server":"http://127.0.0.1:9201/",
-"es_UserInfoUrl":"http://127.0.0.1:9201/.cmbc/user_info/",
+"es_UserInfoUrl":"http://127.0.0.1:9201/.user/user_info/",
 
 "chkTimeRange":"false",
 "totalNum":40000,
